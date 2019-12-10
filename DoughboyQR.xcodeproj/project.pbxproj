@@ -7,22 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		853F352E23A03CEA009B515C /* CoreMotionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F9F3BA23A037AD00060E3E /* CoreMotionController.swift */; };
-		853F352F23A03CEC009B515C /* QRScannerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F09DCA1DAF6A4F00026BB2 /* QRScannerController.swift */; };
-		853F353123A03CF4009B515C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F4F09DBD1DAF669400026BB2 /* Assets.xcassets */; };
-		853F353223A03CF9009B515C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F4F09DBA1DAF669400026BB2 /* Main.storyboard */; };
-		853F353323A03CFB009B515C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F09DB61DAF669400026BB2 /* AppDelegate.swift */; };
+		85D12C7D23A042B100BBA051 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85D12C7523A0423D00BBA051 /* LaunchScreen.storyboard */; };
+		85D12C7E23A042B300BBA051 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85D12C7323A0423D00BBA051 /* Main.storyboard */; };
+		85D12C7F23A042B600BBA051 /* CoreMotionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D12C7A23A0427700BBA051 /* CoreMotionController.swift */; };
+		85D12C8023A042B800BBA051 /* QRScannerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D12C7923A0427700BBA051 /* QRScannerController.swift */; };
+		85D12C8123A042BA00BBA051 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F09DB61DAF669400026BB2 /* AppDelegate.swift */; };
+		85D12C8223A042BD00BBA051 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F4F09DBD1DAF669400026BB2 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		85F9F3BA23A037AD00060E3E /* CoreMotionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CoreMotionController.swift; path = DoughboyQR/CoreMotionController.swift; sourceTree = SOURCE_ROOT; };
+		85D12C7423A0423D00BBA051 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = DoughboyQR/Views/Base.lproj/Main.storyboard; sourceTree = SOURCE_ROOT; };
+		85D12C7623A0423D00BBA051 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = DoughboyQR/Views/Base.lproj/LaunchScreen.storyboard; sourceTree = SOURCE_ROOT; };
+		85D12C7923A0427700BBA051 /* QRScannerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QRScannerController.swift; path = "View Controllers/QRScannerController.swift"; sourceTree = "<group>"; };
+		85D12C7A23A0427700BBA051 /* CoreMotionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoreMotionController.swift; path = "View Controllers/CoreMotionController.swift"; sourceTree = "<group>"; };
 		F4F09DB31DAF669400026BB2 /* DoughboyQR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DoughboyQR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4F09DB61DAF669400026BB2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = DoughboyQR/AppDelegate.swift; sourceTree = SOURCE_ROOT; };
-		F4F09DBB1DAF669400026BB2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F4F09DBD1DAF669400026BB2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = DoughboyQR/Assets.xcassets; sourceTree = SOURCE_ROOT; };
-		F4F09DC01DAF669400026BB2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F4F09DC21DAF669400026BB2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F4F09DCA1DAF6A4F00026BB2 /* QRScannerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QRScannerController.swift; path = DoughboyQR/QRScannerController.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,6 +37,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		85D12C6D23A0407300BBA051 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				85D12C7A23A0427700BBA051 /* CoreMotionController.swift */,
+				85D12C7923A0427700BBA051 /* QRScannerController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		85D12C7223A0421C00BBA051 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				85D12C7523A0423D00BBA051 /* LaunchScreen.storyboard */,
+				85D12C7323A0423D00BBA051 /* Main.storyboard */,
+			);
+			name = Views;
+			path = "View Controllers/Views";
+			sourceTree = "<group>";
+		};
 		F4F09DAA1DAF669400026BB2 = {
 			isa = PBXGroup;
 			children = (
@@ -55,13 +75,11 @@
 		F4F09DB51DAF669400026BB2 /* DoughboyQR */ = {
 			isa = PBXGroup;
 			children = (
+				85D12C7223A0421C00BBA051 /* Views */,
+				85D12C6D23A0407300BBA051 /* View Controllers */,
 				F4F09DB61DAF669400026BB2 /* AppDelegate.swift */,
-				F4F09DBA1DAF669400026BB2 /* Main.storyboard */,
 				F4F09DBD1DAF669400026BB2 /* Assets.xcassets */,
-				F4F09DBF1DAF669400026BB2 /* LaunchScreen.storyboard */,
 				F4F09DC21DAF669400026BB2 /* Info.plist */,
-				F4F09DCA1DAF6A4F00026BB2 /* QRScannerController.swift */,
-				85F9F3BA23A037AD00060E3E /* CoreMotionController.swift */,
 			);
 			path = DoughboyQR;
 			sourceTree = SOURCE_ROOT;
@@ -128,8 +146,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				853F353123A03CF4009B515C /* Assets.xcassets in Resources */,
-				853F353223A03CF9009B515C /* Main.storyboard in Resources */,
+				85D12C8223A042BD00BBA051 /* Assets.xcassets in Resources */,
+				85D12C7E23A042B300BBA051 /* Main.storyboard in Resources */,
+				85D12C7D23A042B100BBA051 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -140,32 +159,30 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				853F353323A03CFB009B515C /* AppDelegate.swift in Sources */,
-				853F352E23A03CEA009B515C /* CoreMotionController.swift in Sources */,
-				853F352F23A03CEC009B515C /* QRScannerController.swift in Sources */,
+				85D12C8123A042BA00BBA051 /* AppDelegate.swift in Sources */,
+				85D12C8023A042B800BBA051 /* QRScannerController.swift in Sources */,
+				85D12C7F23A042B600BBA051 /* CoreMotionController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		F4F09DBA1DAF669400026BB2 /* Main.storyboard */ = {
+		85D12C7323A0423D00BBA051 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				F4F09DBB1DAF669400026BB2 /* Base */,
+				85D12C7423A0423D00BBA051 /* Base */,
 			);
 			name = Main.storyboard;
-			path = DoughboyQR;
-			sourceTree = SOURCE_ROOT;
+			sourceTree = "<group>";
 		};
-		F4F09DBF1DAF669400026BB2 /* LaunchScreen.storyboard */ = {
+		85D12C7523A0423D00BBA051 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				F4F09DC01DAF669400026BB2 /* Base */,
+				85D12C7623A0423D00BBA051 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
-			path = DoughboyQR;
-			sourceTree = SOURCE_ROOT;
+			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
 
@@ -220,12 +237,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -274,10 +292,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
