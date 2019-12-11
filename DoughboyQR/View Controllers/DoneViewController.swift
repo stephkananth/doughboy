@@ -13,7 +13,6 @@ class DoneViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    self.title = "Done!"
     self.navigationItem.hidesBackButton = true
   }
   
