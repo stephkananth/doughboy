@@ -12,6 +12,7 @@ import CoreMotion
 
 class CoreMotionController: UIViewController {
   
+  let arbitrary_number = 7
   let motionManager = CMMotionManager()
   var timer: Timer!
   
@@ -40,11 +41,21 @@ class CoreMotionController: UIViewController {
       switch self.target {
       case 1:
         if accelerometerData.acceleration.x <= -self.threshold, let _: CoreMotionController = self.navigationController?.viewControllers.last as? CoreMotionController {
-          performSegue(withIdentifier: "tiltConfirmed", sender: self)
+          if (self.navigationController?.viewControllers.count)! > arbitrary_number {
+            performSegue(withIdentifier: "doneSegue", sender: self)
+          }
+          else {
+            performSegue(withIdentifier: "tiltConfirmed", sender: self)
+          }
         }
       case 2:
         if accelerometerData.acceleration.x >= self.threshold, let _: CoreMotionController = self.navigationController?.viewControllers.last as? CoreMotionController{
-          performSegue(withIdentifier: "tiltConfirmed", sender: self)
+          if (self.navigationController?.viewControllers.count)! > arbitrary_number {
+            performSegue(withIdentifier: "doneSegue", sender: self)
+          }
+          else {
+            performSegue(withIdentifier: "tiltConfirmed", sender: self)
+          }
         }
       default:
         print("ERROR")
