@@ -124,7 +124,6 @@ extension QRScannerController: AVCaptureMetadataOutputObjectsDelegate {
         if metadataObj.stringValue! == self.title {
           if let _: QRScannerController = self.navigationController?.viewControllers.last as? QRScannerController {
             performSegue(withIdentifier: "qrConfirmed", sender: self)
-            return
           }
         }
       }

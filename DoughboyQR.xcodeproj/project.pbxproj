@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		85B8B76023A1476700A6C5FF /* DoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B8B75F23A1476700A6C5FF /* DoneViewController.swift */; };
+		85B8B76223A14BD700A6C5FF /* StartController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B8B76123A14BD700A6C5FF /* StartController.swift */; };
 		85D12C7D23A042B100BBA051 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85D12C7523A0423D00BBA051 /* LaunchScreen.storyboard */; };
 		85D12C7E23A042B300BBA051 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85D12C7323A0423D00BBA051 /* Main.storyboard */; };
 		85D12C7F23A042B600BBA051 /* CoreMotionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D12C7A23A0427700BBA051 /* CoreMotionController.swift */; };
@@ -18,6 +19,7 @@
 
 /* Begin PBXFileReference section */
 		85B8B75F23A1476700A6C5FF /* DoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoneViewController.swift; sourceTree = "<group>"; };
+		85B8B76123A14BD700A6C5FF /* StartController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartController.swift; sourceTree = "<group>"; };
 		85D12C7423A0423D00BBA051 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = DoughboyQR/Views/Base.lproj/Main.storyboard; sourceTree = SOURCE_ROOT; };
 		85D12C7623A0423D00BBA051 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = DoughboyQR/Views/Base.lproj/LaunchScreen.storyboard; sourceTree = SOURCE_ROOT; };
 		85D12C7923A0427700BBA051 /* QRScannerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QRScannerController.swift; path = "View Controllers/QRScannerController.swift"; sourceTree = "<group>"; };
@@ -42,6 +44,7 @@
 		85D12C6D23A0407300BBA051 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				85B8B76123A14BD700A6C5FF /* StartController.swift */,
 				85D12C7923A0427700BBA051 /* QRScannerController.swift */,
 				85D12C7A23A0427700BBA051 /* CoreMotionController.swift */,
 				85B8B75F23A1476700A6C5FF /* DoneViewController.swift */,
@@ -164,6 +167,7 @@
 			files = (
 				85B8B76023A1476700A6C5FF /* DoneViewController.swift in Sources */,
 				85D12C8123A042BA00BBA051 /* AppDelegate.swift in Sources */,
+				85B8B76223A14BD700A6C5FF /* StartController.swift in Sources */,
 				85D12C8023A042B800BBA051 /* QRScannerController.swift in Sources */,
 				85D12C7F23A042B600BBA051 /* CoreMotionController.swift in Sources */,
 			);
