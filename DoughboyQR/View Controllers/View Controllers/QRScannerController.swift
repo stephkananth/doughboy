@@ -23,11 +23,13 @@ class QRScannerController: UIViewController {
                                     AVMetadataObject.ObjectType.interleaved2of5,
                                     AVMetadataObject.ObjectType.qr]
   
+  override func viewDidAppear(_ animated: Bool) {
+    self.title = String(Int.random(in: 1..<5))
+  }
+  
   override func viewDidLoad() {
     super.viewDidLoad()
-    self.title = String(Int.random(in: 1..<5))
     self.navigationItem.hidesBackButton = true
-    
     guard let captureDevice = AVCaptureDevice.default(for: AVMediaType.video) else {
       print("Failed to get the camera device")
       return

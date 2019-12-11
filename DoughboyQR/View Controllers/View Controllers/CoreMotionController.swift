@@ -45,7 +45,7 @@ class CoreMotionController: UIViewController {
             performSegue(withIdentifier: "doneSegue", sender: self)
           }
           else {
-            performSegue(withIdentifier: "tiltConfirmed", sender: self)
+            self.navigationController?.popViewController(animated: false)
           }
         }
       case 2:
@@ -54,7 +54,7 @@ class CoreMotionController: UIViewController {
             performSegue(withIdentifier: "doneSegue", sender: self)
           }
           else {
-            performSegue(withIdentifier: "tiltConfirmed", sender: self)
+            self.navigationController?.popViewController(animated: false)
           }
         }
       default:
