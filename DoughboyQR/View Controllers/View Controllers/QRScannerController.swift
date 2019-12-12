@@ -11,6 +11,7 @@ class QRScannerController: UIViewController {
   func updateTarget() {
     self.target = self.viewModel!.rounds[self.viewModel!.currentRound][0] + 1
     self.title = String(self.target)
+    print(self.viewModel!.currentRound)
   }
   
   // MARK: QR Scanner

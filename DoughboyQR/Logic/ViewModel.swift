@@ -11,7 +11,7 @@ import Foundation
 class ViewModel {
   
   // MARK: Round Logic
-  let numRounds: Int = 5
+  let numRounds: Int = 10
   var rounds: [[Int]] = []
   var currentRound: Int = 0
   var isUserDone: Bool = false

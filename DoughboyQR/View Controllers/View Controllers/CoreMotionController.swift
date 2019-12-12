@@ -45,48 +45,56 @@ class CoreMotionController: UIViewController {
   @objc func update() {
     if let accelerometerData = motionManager.accelerometerData {
       if let _: CoreMotionController = self.navigationController?.viewControllers.last as? CoreMotionController {
-        
-        switch self.viewModel?.rounds[self.viewModel!.currentRound][1] {
-        case 0:
-          if accelerometerData.acceleration.x <= -self.threshold {
-            // Vibration
-             AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
-            self.viewModel?.incrementRound()
-            if self.viewModel?.currentRound == self.viewModel!.numRounds {
-              self.viewModel?.stopwatch.stop()
-              self.viewModel?.isUserDone = true
-              performSegue(withIdentifier: "doneSegue", sender: self)
-              return
-            } else {
+        switch self.previousStepCorrect {
+        case true:
+          switch self.viewModel?.rounds[self.viewModel!.currentRound][1] {
+          case 0:
+            if accelerometerData.acceleration.x <= -self.threshold {
+              // Vibration
+              AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+              self.viewModel?.incrementRound()
+              if self.viewModel?.currentRound == self.viewModel!.numRounds {
+                self.viewModel?.stopwatch.stop()
+                self.viewModel?.isUserDone = true
+                performSegue(withIdentifier: "doneSegue", sender: self)
+                return
+              } else {
+                self.navigationController?.popViewController(animated: false)
+              }
+            } else if accelerometerData.acceleration.x >= self.threshold * 1.5 {
+              // Vibration
+              AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+              self.viewModel!.decrementRound()
               self.navigationController?.popViewController(animated: false)
             }
-          } else if accelerometerData.acceleration.x >= self.threshold * 2 {
-            // Vibration
-             AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+          case 1:
+            if accelerometerData.acceleration.x >= self.threshold {
+              // Vibration
+              AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+              self.viewModel!.incrementRound()
+              if self.viewModel?.currentRound == self.viewModel!.numRounds {
+                self.viewModel?.stopwatch.stop()
+                self.viewModel?.isUserDone = true
+                performSegue(withIdentifier: "doneSegue", sender: self)
+                return
+              } else {
+                self.navigationController?.popViewController(animated: false)
+              }
+            } else if accelerometerData.acceleration.x <= -self.threshold * 1.5 {
+              // Vibration
+              AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+              self.viewModel!.decrementRound()
+              self.navigationController?.popViewController(animated: false)
+            }
+          default:
+            print("ERROR")
+          }
+        case false:
+          if  accelerometerData.acceleration.x >= self.threshold || accelerometerData.acceleration.x <= -self.threshold {
+            AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
             self.viewModel!.decrementRound()
             self.navigationController?.popViewController(animated: false)
           }
-        case 1:
-          if accelerometerData.acceleration.x >= self.threshold {
-            // Vibration
-             AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
-            self.viewModel!.incrementRound()
-            if self.viewModel?.currentRound == self.viewModel!.numRounds {
-              self.viewModel?.stopwatch.stop()
-              self.viewModel?.isUserDone = true
-              performSegue(withIdentifier: "doneSegue", sender: self)
-              return
-            } else {
-              self.navigationController?.popViewController(animated: false)
-            }
-          } else if accelerometerData.acceleration.x <= -self.threshold * 2 {
-            // Vibration
-             AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
-            self.viewModel!.decrementRound()
-            self.navigationController?.popViewController(animated: false)
-          }
-        default:
-          print("ERROR")
         }
       }
     }
