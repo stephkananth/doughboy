@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		855D409923A184440020D360 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855D409823A184440020D360 /* ViewModel.swift */; };
+		855D409C23A1C23D0020D360 /* Stopwatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855D409B23A1C23D0020D360 /* Stopwatch.swift */; };
 		85B8B76023A1476700A6C5FF /* DoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B8B75F23A1476700A6C5FF /* DoneViewController.swift */; };
 		85B8B76223A14BD700A6C5FF /* StartController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B8B76123A14BD700A6C5FF /* StartController.swift */; };
 		85D12C7D23A042B100BBA051 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85D12C7523A0423D00BBA051 /* LaunchScreen.storyboard */; };
@@ -18,6 +20,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		855D409823A184440020D360 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		855D409B23A1C23D0020D360 /* Stopwatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stopwatch.swift; sourceTree = "<group>"; };
 		85B8B75F23A1476700A6C5FF /* DoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoneViewController.swift; sourceTree = "<group>"; };
 		85B8B76123A14BD700A6C5FF /* StartController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartController.swift; sourceTree = "<group>"; };
 		85D12C7423A0423D00BBA051 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = DoughboyQR/Views/Base.lproj/Main.storyboard; sourceTree = SOURCE_ROOT; };
@@ -41,6 +45,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		855D409723A184120020D360 /* Logic */ = {
+			isa = PBXGroup;
+			children = (
+				855D409823A184440020D360 /* ViewModel.swift */,
+			);
+			path = Logic;
+			sourceTree = "<group>";
+		};
+		855D409A23A1C2200020D360 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				855D409B23A1C23D0020D360 /* Stopwatch.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		85D12C6D23A0407300BBA051 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -81,6 +101,8 @@
 		F4F09DB51DAF669400026BB2 /* DoughboyQR */ = {
 			isa = PBXGroup;
 			children = (
+				855D409723A184120020D360 /* Logic */,
+				855D409A23A1C2200020D360 /* Models */,
 				85D12C7223A0421C00BBA051 /* Views */,
 				85D12C6D23A0407300BBA051 /* View Controllers */,
 				F4F09DB61DAF669400026BB2 /* AppDelegate.swift */,
@@ -169,6 +191,8 @@
 				85D12C8123A042BA00BBA051 /* AppDelegate.swift in Sources */,
 				85B8B76223A14BD700A6C5FF /* StartController.swift in Sources */,
 				85D12C8023A042B800BBA051 /* QRScannerController.swift in Sources */,
+				855D409923A184440020D360 /* ViewModel.swift in Sources */,
+				855D409C23A1C23D0020D360 /* Stopwatch.swift in Sources */,
 				85D12C7F23A042B600BBA051 /* CoreMotionController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

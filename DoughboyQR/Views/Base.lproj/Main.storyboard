@@ -19,7 +19,8 @@
                                 <rect key="frame" x="170.5" y="340.5" width="34" height="30"/>
                                 <state key="normal" title="Start"/>
                                 <connections>
-                                    <segue destination="EK4-2c-P0l" kind="show" id="FlV-iW-LRp"/>
+                                    <action selector="startButtonPressed:" destination="wCK-Ww-MzO" eventType="touchUpInside" id="arN-6I-Br3"/>
+                                    <segue destination="EK4-2c-P0l" kind="show" animates="NO" id="FlV-iW-LRp"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -34,7 +35,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AGK-Me-Oc9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-881" y="-1341"/>
+            <point key="canvasLocation" x="-890" y="-1341"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="WX6-rI-UY6">
@@ -67,21 +68,18 @@
                         <barButtonItem title="Item" id="yvQ-fy-rRG">
                             <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                             <connections>
-                                <segue destination="3oQ-hA-BIh" kind="show" identifier="qrConfirmed" id="Odt-mG-d9f"/>
+                                <segue destination="3oQ-hA-BIh" kind="show" identifier="qrConfirmed" animates="NO" id="Odt-mG-d9f"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="XhH-fh-Wu3"/>
                     </toolbarItems>
                     <navigationItem key="navigationItem" id="qFP-Vq-OgL"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics"/>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
-                    <connections>
-                        <outlet property="messageLabel" destination="yvQ-fy-rRG" id="uRV-cB-ROl"/>
-                    </connections>
+                    <nil key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jxb-eq-2yI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="145" y="-1342"/>
+            <point key="canvasLocation" x="57" y="-1341"/>
         </scene>
         <!--Core Motion Controller-->
         <scene sceneID="FE5-S7-hYX">
@@ -95,15 +93,12 @@
                                 <rect key="frame" x="172" y="626" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
-                                    <segue destination="agY-si-7tC" kind="show" identifier="doneSegue" id="dRR-lJ-XvX"/>
+                                    <segue destination="agY-si-7tC" kind="show" identifier="doneSegue" animates="NO" id="dRR-lJ-XvX"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sv5-Dl-DHP">
                                 <rect key="frame" x="172" y="626" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <connections>
-                                    <segue destination="EK4-2c-P0l" kind="show" identifier="tiltConfirmed" id="PJ6-ND-khi"/>
-                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -115,36 +110,48 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5uN-eZ-Zb2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1095" y="-1341"/>
+            <point key="canvasLocation" x="1004" y="-1341"/>
         </scene>
-        <!--Done!-->
+        <!--Done-->
         <scene sceneID="7Rg-y8-uQX">
             <objects>
-                <viewController title="Done!" id="agY-si-7tC" customClass="DoneViewController" customModule="DoughboyQR" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Done" id="agY-si-7tC" customClass="DoneViewController" customModule="DoughboyQR" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fT7-8i-kpH">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Done!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cc6-M9-p7z">
-                                <rect key="frame" x="166" y="323" width="46" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XeV-C3-Xyl">
+                                <rect key="frame" x="166.5" y="300" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Zb-xM-adU">
+                                <rect key="frame" x="166.5" y="324.5" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="9Zb-xM-adU" firstAttribute="centerX" secondItem="6Kk-6g-8zI" secondAttribute="centerX" id="DLh-xt-kuZ"/>
+                            <constraint firstItem="XeV-C3-Xyl" firstAttribute="top" secondItem="6Kk-6g-8zI" secondAttribute="top" constant="256" id="TsJ-U7-qIj"/>
+                            <constraint firstItem="XeV-C3-Xyl" firstAttribute="centerX" secondItem="6Kk-6g-8zI" secondAttribute="centerX" id="seo-qX-AIO"/>
+                            <constraint firstItem="9Zb-xM-adU" firstAttribute="firstBaseline" secondItem="XeV-C3-Xyl" secondAttribute="baseline" constant="24" symbolType="layoutAnchor" id="xrC-b9-UBy"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Kk-6g-8zI"/>
                     </view>
                     <navigationItem key="navigationItem" id="FbO-8J-3my"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="timeLabel" destination="9Zb-xM-adU" id="UHb-jb-5TN"/>
+                        <outlet property="trialsLabel" destination="XeV-C3-Xyl" id="1if-JZ-XPD"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WMP-Pz-Bxq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2130" y="-1341"/>
+            <point key="canvasLocation" x="1949.5999999999999" y="-1342.5787106446778"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="PJ6-ND-khi"/>
-    </inferredMetricsTieBreakers>
 </document>

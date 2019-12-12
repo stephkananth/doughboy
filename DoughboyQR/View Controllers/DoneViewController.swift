@@ -11,9 +11,19 @@ import UIKit
 
 class DoneViewController: UIViewController {
   
+  var viewModel: ViewModel? = nil
+  
+  @IBOutlet weak var trialsLabel: UILabel!
+  @IBOutlet weak var timeLabel: UILabel!
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     self.navigationItem.hidesBackButton = true
+    self.updateLabels()
   }
   
+  func updateLabels() {
+    self.trialsLabel.text = "User completed \(self.viewModel!.numRounds) trials"
+    self.timeLabel.text = "User took \(self.viewModel!.stopwatch.elapsedTime! / Double(self.viewModel!.numRounds))"
+  }
 }

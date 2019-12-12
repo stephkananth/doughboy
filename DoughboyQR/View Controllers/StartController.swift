@@ -11,4 +11,16 @@ import UIKit
 
 class StartController: UIViewController {
   
+  var viewModel = ViewModel()
+  
+  @IBAction func startButtonPressed(_ sender: UIButton) {
+    self.viewModel.setupGame()
+    self.viewModel.stopwatch.start()
+  }
+  
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if let qrVC: QRScannerController = segue.destination as? QRScannerController {
+      qrVC.viewModel = self.viewModel
+    }
+  }
 }

@@ -1,10 +1,19 @@
 import UIKit
 import AVFoundation
+import AudioToolbox
 
 class QRScannerController: UIViewController {
   
-  @IBOutlet weak var messageLabel: UIBarButtonItem!
+  var viewModel: ViewModel? = nil
+  var isCorrect: Bool = true
+  var target: Int = 0
   
+  func updateTarget() {
+    self.target = self.viewModel!.rounds[self.viewModel!.currentRound][0] + 1
+    self.title = String(self.target)
+  }
+  
+  // MARK: QR Scanner
   var captureSession = AVCaptureSession()
   var videoPreviewLayer: AVCaptureVideoPreviewLayer?
   var qrCodeFrameView: UIView?
@@ -24,7 +33,7 @@ class QRScannerController: UIViewController {
                                     AVMetadataObject.ObjectType.qr]
   
   override func viewDidAppear(_ animated: Bool) {
-    self.title = String(Int.random(in: 1..<5))
+    self.updateTarget()
   }
   
   override func viewDidLoad() {
@@ -65,45 +74,17 @@ class QRScannerController: UIViewController {
     }
   }
   
-  override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
-  }
-  
   private func updatePreviewLayer(layer: AVCaptureConnection, orientation: AVCaptureVideoOrientation) {
     layer.videoOrientation = orientation
     videoPreviewLayer?.frame = self.view.bounds
   }
   
-  override func viewDidLayoutSubviews() {
-    super.viewDidLayoutSubviews()
-    
-    if let connection =  self.videoPreviewLayer?.connection  {
-      let currentDevice: UIDevice = UIDevice.current
-      let orientation: UIDeviceOrientation = currentDevice.orientation
-      let previewLayerConnection : AVCaptureConnection = connection
-      
-      if previewLayerConnection.isVideoOrientationSupported {
-        switch (orientation) {
-        case .portrait:
-          updatePreviewLayer(layer: previewLayerConnection, orientation: .portrait)
-          break
-        case .landscapeRight:
-          updatePreviewLayer(layer: previewLayerConnection, orientation: .landscapeLeft)
-          break
-        case .landscapeLeft:
-          updatePreviewLayer(layer: previewLayerConnection, orientation: .landscapeRight)
-          break
-        case .portraitUpsideDown:
-          updatePreviewLayer(layer: previewLayerConnection, orientation: .portraitUpsideDown)
-          break
-        default:
-          updatePreviewLayer(layer: previewLayerConnection, orientation: .portrait)
-          break
-        }
-      }
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if let coreMotionVC: CoreMotionController = segue.destination as? CoreMotionController {
+      coreMotionVC.previousStepCorrect = self.isCorrect
+      coreMotionVC.viewModel = self.viewModel
     }
   }
-  
 }
 
 extension QRScannerController: AVCaptureMetadataOutputObjectsDelegate {
@@ -111,7 +92,6 @@ extension QRScannerController: AVCaptureMetadataOutputObjectsDelegate {
   func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
     if metadataObjects.count == 0 {
       qrCodeFrameView?.frame = CGRect.zero
-      messageLabel.title = "No QR code is detected"
       return
     }
     let metadataObj = metadataObjects[0] as! AVMetadataMachineReadableCodeObject
@@ -122,11 +102,19 @@ extension QRScannerController: AVCaptureMetadataOutputObjectsDelegate {
       qrCodeFrameView?.frame = barCodeObject!.bounds
       
       if metadataObj.stringValue != nil {
-        messageLabel.title = metadataObj.stringValue
-        if metadataObj.stringValue! == self.title {
+        if metadataObj.stringValue! == String(self.target) {
           if let _: QRScannerController = self.navigationController?.viewControllers.last as? QRScannerController {
+            // Vibration
+             AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+            self.isCorrect = true
             performSegue(withIdentifier: "qrConfirmed", sender: self)
           }
+        }
+        else {
+          // Vibration
+           AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+          self.isCorrect = false
+          performSegue(withIdentifier: "qrConfirmed", sender: self)
         }
       }
     }

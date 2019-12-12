@@ -9,58 +9,92 @@
 import Foundation
 import UIKit
 import CoreMotion
+import AudioToolbox
 
 class CoreMotionController: UIViewController {
   
-  let arbitrary_number = 7
-  let motionManager = CMMotionManager()
-  var timer: Timer!
-  
+  var viewModel: ViewModel? = nil
+  var previousStepCorrect: Bool = true
+  var target: Int = 0
   let threshold: Double = 0.5
-  let target = Int.random(in: 1..<3)
   
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    self.navigationItem.hidesBackButton = true
-    
+  func updateTarget() {
+    self.target = self.viewModel!.rounds[self.viewModel!.currentRound][1]
     switch self.target {
-    case 1:
+    case 0:
       self.title = "<-- Left"
-    case 2:
+    case 1:
       self.title = "Right -->"
     default:
       self.title = "ERROR"
     }
-    
+  }
+  
+  // MARK: Core Motion
+  let motionManager = CMMotionManager()
+  var timer: Timer!
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    self.navigationItem.hidesBackButton = true
+    self.updateTarget()
     motionManager.startAccelerometerUpdates()
     timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(CoreMotionController.update), userInfo: nil, repeats: true)
   }
   
   @objc func update() {
     if let accelerometerData = motionManager.accelerometerData {
-      switch self.target {
-      case 1:
-        if accelerometerData.acceleration.x <= -self.threshold, let _: CoreMotionController = self.navigationController?.viewControllers.last as? CoreMotionController {
-          if (self.navigationController?.viewControllers.count)! > arbitrary_number {
-            performSegue(withIdentifier: "doneSegue", sender: self)
-          }
-          else {
+      if let _: CoreMotionController = self.navigationController?.viewControllers.last as? CoreMotionController {
+        
+        switch self.viewModel?.rounds[self.viewModel!.currentRound][1] {
+        case 0:
+          if accelerometerData.acceleration.x <= -self.threshold {
+            // Vibration
+             AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+            self.viewModel?.incrementRound()
+            if self.viewModel?.currentRound == self.viewModel!.numRounds {
+              self.viewModel?.stopwatch.stop()
+              self.viewModel?.isUserDone = true
+              performSegue(withIdentifier: "doneSegue", sender: self)
+              return
+            } else {
+              self.navigationController?.popViewController(animated: false)
+            }
+          } else if accelerometerData.acceleration.x >= self.threshold * 2 {
+            // Vibration
+             AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+            self.viewModel!.decrementRound()
             self.navigationController?.popViewController(animated: false)
           }
-        }
-      case 2:
-        if accelerometerData.acceleration.x >= self.threshold, let _: CoreMotionController = self.navigationController?.viewControllers.last as? CoreMotionController{
-          if (self.navigationController?.viewControllers.count)! > arbitrary_number {
-            performSegue(withIdentifier: "doneSegue", sender: self)
-          }
-          else {
+        case 1:
+          if accelerometerData.acceleration.x >= self.threshold {
+            // Vibration
+             AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+            self.viewModel!.incrementRound()
+            if self.viewModel?.currentRound == self.viewModel!.numRounds {
+              self.viewModel?.stopwatch.stop()
+              self.viewModel?.isUserDone = true
+              performSegue(withIdentifier: "doneSegue", sender: self)
+              return
+            } else {
+              self.navigationController?.popViewController(animated: false)
+            }
+          } else if accelerometerData.acceleration.x <= -self.threshold * 2 {
+            // Vibration
+             AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+            self.viewModel!.decrementRound()
             self.navigationController?.popViewController(animated: false)
           }
+        default:
+          print("ERROR")
         }
-      default:
-        print("ERROR")
       }
     }
   }
   
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if let doneVC: DoneViewController = segue.destination as? DoneViewController {
+      doneVC.viewModel = self.viewModel
+    }
+  }
 }
