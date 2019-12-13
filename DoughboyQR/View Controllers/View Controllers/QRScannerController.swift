@@ -8,9 +8,17 @@ class QRScannerController: UIViewController {
   var isCorrect: Bool = true
   var target: Int = 0
   
+  override var prefersStatusBarHidden: Bool {
+      return true
+  }
+  
   func updateTarget() {
-    self.target = self.viewModel!.rounds[self.viewModel!.currentRound][0] + 1
-    self.title = String(self.target)
+    if !self.viewModel!.isUserDone {
+      self.target = self.viewModel!.rounds[self.viewModel!.currentRound][0] + 1
+      self.title = String(self.target)
+      let attributes = [NSAttributedString.Key.font: UIFont(name: "Avenir-Black", size: 48)!]
+      self.navigationController?.navigationBar.titleTextAttributes = attributes
+    }
     print(self.viewModel!.currentRound)
   }
   
@@ -40,38 +48,40 @@ class QRScannerController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     self.navigationItem.hidesBackButton = true
-    guard let captureDevice = AVCaptureDevice.default(for: AVMediaType.video) else {
-      print("Failed to get the camera device")
-      return
-    }
-    
-    do {
-      let input = try AVCaptureDeviceInput(device: captureDevice)
-      captureSession.addInput(input)
+    if !self.viewModel!.isUserDone {
+      guard let captureDevice = AVCaptureDevice.default(for: AVMediaType.video) else {
+        print("Failed to get the camera device")
+        return
+      }
       
-      let captureMetadataOutput = AVCaptureMetadataOutput()
-      captureSession.addOutput(captureMetadataOutput)
+      do {
+        let input = try AVCaptureDeviceInput(device: captureDevice)
+        captureSession.addInput(input)
+        
+        let captureMetadataOutput = AVCaptureMetadataOutput()
+        captureSession.addOutput(captureMetadataOutput)
+        
+        captureMetadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
+        captureMetadataOutput.metadataObjectTypes = supportedCodeTypes
+      } catch {
+        print(error)
+        return
+      }
       
-      captureMetadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
-      captureMetadataOutput.metadataObjectTypes = supportedCodeTypes
-    } catch {
-      print(error)
-      return
-    }
-    
-    videoPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
-    videoPreviewLayer?.videoGravity = AVLayerVideoGravity.resizeAspectFill
-    videoPreviewLayer?.frame = view.layer.bounds
-    view.layer.addSublayer(videoPreviewLayer!)
-    
-    captureSession.startRunning()
-    qrCodeFrameView = UIView()
-    
-    if let qrCodeFrameView = qrCodeFrameView {
-      qrCodeFrameView.layer.borderColor = UIColor.green.cgColor
-      qrCodeFrameView.layer.borderWidth = 2
-      view.addSubview(qrCodeFrameView)
-      view.bringSubviewToFront(qrCodeFrameView)
+      videoPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
+      videoPreviewLayer?.videoGravity = AVLayerVideoGravity.resizeAspectFill
+      videoPreviewLayer?.frame = view.layer.bounds
+      view.layer.addSublayer(videoPreviewLayer!)
+      
+      captureSession.startRunning()
+      qrCodeFrameView = UIView()
+      
+      if let qrCodeFrameView = qrCodeFrameView {
+        qrCodeFrameView.layer.borderColor = UIColor.green.cgColor
+        qrCodeFrameView.layer.borderWidth = 2
+        view.addSubview(qrCodeFrameView)
+        view.bringSubviewToFront(qrCodeFrameView)
+      }
     }
   }
   
@@ -91,31 +101,33 @@ class QRScannerController: UIViewController {
 extension QRScannerController: AVCaptureMetadataOutputObjectsDelegate {
   
   func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
-    if metadataObjects.count == 0 {
-      qrCodeFrameView?.frame = CGRect.zero
-      return
-    }
-    let metadataObj = metadataObjects[0] as! AVMetadataMachineReadableCodeObject
-    
-    if supportedCodeTypes.contains(metadataObj.type) {
-      // If the found metadata is equal to the QR code metadata (or barcode) then update the status label's text and set the bounds
-      let barCodeObject = videoPreviewLayer?.transformedMetadataObject(for: metadataObj)
-      qrCodeFrameView?.frame = barCodeObject!.bounds
+    if !self.viewModel!.isUserDone {
+      if metadataObjects.count == 0 {
+        qrCodeFrameView?.frame = CGRect.zero
+        return
+      }
+      let metadataObj = metadataObjects[0] as! AVMetadataMachineReadableCodeObject
       
-      if metadataObj.stringValue != nil {
-        if metadataObj.stringValue! == String(self.target) {
-          if let _: QRScannerController = self.navigationController?.viewControllers.last as? QRScannerController {
+      if supportedCodeTypes.contains(metadataObj.type) {
+        // If the found metadata is equal to the QR code metadata (or barcode) then update the status label's text and set the bounds
+        let barCodeObject = videoPreviewLayer?.transformedMetadataObject(for: metadataObj)
+        qrCodeFrameView?.frame = barCodeObject!.bounds
+        
+        if metadataObj.stringValue != nil {
+          if metadataObj.stringValue! == String(self.target) {
+            if let _: QRScannerController = self.navigationController?.viewControllers.last as? QRScannerController {
+              // Vibration
+              AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+              self.isCorrect = true
+              performSegue(withIdentifier: "qrConfirmed", sender: self)
+            }
+          }
+          else {
             // Vibration
-             AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
-            self.isCorrect = true
+            AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+            self.isCorrect = false
             performSegue(withIdentifier: "qrConfirmed", sender: self)
           }
-        }
-        else {
-          // Vibration
-           AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
-          self.isCorrect = false
-          performSegue(withIdentifier: "qrConfirmed", sender: self)
         }
       }
     }

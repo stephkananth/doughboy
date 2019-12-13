@@ -11,6 +11,10 @@ import UIKit
 
 class DoneViewController: UIViewController {
   
+  override var prefersStatusBarHidden: Bool {
+      return true
+  }
+  
   var viewModel: ViewModel? = nil
   
   @IBOutlet weak var trialsLabel: UILabel!

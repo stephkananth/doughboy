@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="d8N-by-Xo4">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -16,7 +17,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kpT-BJ-Qtk">
-                                <rect key="frame" x="170.5" y="340.5" width="34" height="30"/>
+                                <rect key="frame" x="145.5" y="302" width="84" height="63"/>
+                                <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="36"/>
                                 <state key="normal" title="Start"/>
                                 <connections>
                                     <action selector="startButtonPressed:" destination="wCK-Ww-MzO" eventType="touchUpInside" id="arN-6I-Br3"/>
@@ -26,8 +28,9 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="kpT-BJ-Qtk" firstAttribute="centerX" secondItem="lfY-kS-huF" secondAttribute="centerX" id="acO-qZ-My0"/>
-                            <constraint firstItem="kpT-BJ-Qtk" firstAttribute="centerY" secondItem="lfY-kS-huF" secondAttribute="centerY" id="mgN-Av-abw"/>
+                            <constraint firstItem="kpT-BJ-Qtk" firstAttribute="centerX" secondItem="TS7-S2-dcN" secondAttribute="centerX" id="6Du-YN-P6w"/>
+                            <constraint firstItem="kpT-BJ-Qtk" firstAttribute="top" secondItem="lfY-kS-huF" secondAttribute="top" constant="258" id="I82-Fm-Pue"/>
+                            <constraint firstItem="kpT-BJ-Qtk" firstAttribute="centerY" secondItem="TS7-S2-dcN" secondAttribute="centerY" id="cg8-Wa-lEp"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="lfY-kS-huF"/>
                     </view>
@@ -121,14 +124,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XeV-C3-Xyl">
-                                <rect key="frame" x="166.5" y="300" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <rect key="frame" x="165.5" y="300" width="44" height="25"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="18"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Zb-xM-adU">
-                                <rect key="frame" x="166.5" y="324.5" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <rect key="frame" x="165.5" y="328" width="44" height="25"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="18"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>

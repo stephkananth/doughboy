@@ -13,6 +13,10 @@ class StartController: UIViewController {
   
   var viewModel = ViewModel()
   
+  override var prefersStatusBarHidden: Bool {
+      return true
+  }
+  
   @IBAction func startButtonPressed(_ sender: UIButton) {
     self.viewModel.setupGame()
     self.viewModel.stopwatch.start()
